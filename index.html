@@ -1,0 +1,151 @@
+<html>
+    <head>
+        <title>🐈‍⬛ Happy Birthday Darling! 🐈‍⬛</title>
+        <style>
+            body {
+                text-align: center;
+            }
+            #gamespace {
+                margin: auto;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            #gamespace img {
+                object-fit: scale-down;
+                max-width: 20%;
+                padding: 1%;
+            }
+            input {
+                margin: 1em;
+                padding: 0.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>happy birthday!!!!!</h1>
+        <p>Hiiiiiii! I hope you're having a good birthday, this is just something silly I threw togther. </p>
+        <p> Below is a grid of black cats. You must successfully click on the <b><u>three moppys (in order)</u></b> to reveal the secret code to definitely-not-a-Steam-card.</p>
+        <p id="code"></p>
+        <input type="button" onclick="catReset()" value="Reset"> <input type="button" onclick="copy" value="Copy">
+        <div id="gamespace">
+        </div>
+    </body>
+    <script>
+        cats = [
+            {
+                "img":"1.png",
+                "caption":"what treasures do you seek? whatever they are i have certainly eaten them.",
+                "value":"ABCDE"
+            },
+            {
+                "img":"2.png",
+                "caption":"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmlem",
+                "value":"ABCDE"
+            },
+            {
+                "img":"3.png",
+                "caption":"them's there are my shoes bucko, so back off!!",
+                "value":"ABCDE"
+            },
+            {
+                "img":"4.png",
+                "caption":"bro you can't say that",
+                "value":"ABCDE"
+            },
+            {
+                "img":"5.png",
+                "caption":"o.o",
+                "value":"ABCDE"
+            },
+            {
+                "img":"6.png",
+                "caption":"LONG LIVE THE KING",
+                "value":"ABCDE"
+            },
+            {
+                "img":"7.png",
+                "caption":"hello, it is i, the wise and mighty stinx. listen to my riddle mortal, and then please empty this.",
+                "value":"ABCDE"
+            },
+            {
+                "img":"8.png",
+                "caption":"sorry could you speak up a bit? i just put in my extra ears.",
+                "value":"ABCDE"
+            },
+            {
+                "img":"9.png",
+                "caption":"let's take gabapentin togther",
+                "value":"ABCDE"
+            },
+            {
+                "img":"10.png",
+                "caption":"Hello, random chicken inspection. Do you have any raw chicken? If so I mus confiscate it.",
+                "value":"ABCDE"
+            },
+            {
+                "img":"11.png",
+                "caption":"this shirt will be stained red by nightfall",
+                "value":"ABCDE"
+            },
+            {
+                "img":"12.png",
+                "caption":"you'd be drunk too if you had to wear this stupid thing",
+                "value":"ABCDE"
+            },
+            {
+                "img":"13.png",
+                "caption":"ah yeah, i'm kinda fantastic.",
+                "value":"ABCDE"
+            },
+            {
+                "img":"14.png",
+                "caption":"waAAAH-",
+                "value":"ABCDE"
+            },
+            {
+                "img":"15.png",
+                "caption":"oh just a normal tuesday, yourself?",
+                "value":"ABCDE"
+            },
+            {
+                "img":"16.png",
+                "caption":"*meow*- i mean *echolocation noises*. i am a bat :)",
+                "value":"ABCDE"
+            }
+        ]
+        
+        game_elem = document.getElementById("gamespace");
+
+        code_elem = document.getElementById("code");
+        
+        function catReset(){
+            game_elem.innerHTML = '';
+            for (cat of cats){
+                img = new Image();
+                img.src = "cats/"+cat["img"];
+                img.title = cat["caption"];
+                img.value = cat["value"];
+                img.addEventListener("click", addValue);
+                game_elem.append(img);
+            }
+            code_elem.innerHTML = "_ _ _ _ _ - _ _ _ _ _ - _ _ _ _ _";
+            code = [];
+        }
+
+        function addValue(e){
+            console.log(e.target);
+            if (code.length < 3){
+                code.push(e.target.value);
+                code_elem.innerHTML = "";
+                code_elem.innerHTML += code.join(" - ")
+                code_elem.innerHTML += " - _ _ _ _ _".repeat(3-code.length);
+                e.target.remove();
+            }
+            else {
+                alert(" 🐈‍⬛ Meow! The code is only three parts! If you want to try again, press the reset button.")
+            }
+        }
+
+        catReset();
+    </script>
+</html>
