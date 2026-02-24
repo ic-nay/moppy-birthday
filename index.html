@@ -26,7 +26,7 @@
         <p>Hiiiiiii! I hope you're having a good birthday, this is just something silly I threw togther. </p>
         <p> Below is a grid of black cats. You must successfully click on the <b><u>three moppys (in order)</u></b> to reveal the secret code to definitely-not-a-Steam-card.</p>
         <p id="code"></p>
-        <input type="button" onclick="catReset()" value="Reset"> <input type="button" onclick="copy" value="Copy">
+        <input type="button" onclick="catReset()" value="Reset"> <input type="button" onclick="copy()" value="Copy">
         <div id="gamespace">
         </div>
     </body>
@@ -35,85 +35,87 @@
             {
                 "img":"1.png",
                 "caption":"what treasures do you seek? whatever they are i have certainly eaten them.",
-                "value":"ABCDE"
+                "value":"NAAW"
             },
             {
                 "img":"2.png",
                 "caption":"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmlem",
-                "value":"ABCDE"
+                "value":"GUSY"
             },
             {
                 "img":"3.png",
                 "caption":"them's there are my shoes bucko, so back off!!",
-                "value":"ABCDE"
+                "value":"SKAL"
             },
             {
                 "img":"4.png",
                 "caption":"bro you can't say that",
-                "value":"ABCDE"
+                "value":"SPFM"
             },
             {
                 "img":"5.png",
                 "caption":"o.o",
-                "value":"ABCDE"
+                "value":"YASI"
             },
             {
                 "img":"6.png",
                 "caption":"LONG LIVE THE KING",
-                "value":"ABCDE"
+                "value":"FEAS"
             },
             {
                 "img":"7.png",
                 "caption":"hello, it is i, the wise and mighty stinx. listen to my riddle mortal, and then please empty this.",
-                "value":"ABCDE"
+                "value":"MRRF"
             },
             {
                 "img":"8.png",
                 "caption":"sorry could you speak up a bit? i just put in my extra ears.",
-                "value":"ABCDE"
+                "value":"AIOJ"
             },
             {
                 "img":"9.png",
                 "caption":"let's take gabapentin togther",
-                "value":"ABCDE"
+                "value":"T5RW"
             },
             {
                 "img":"10.png",
                 "caption":"Hello, random chicken inspection. Do you have any raw chicken? If so I mus confiscate it.",
-                "value":"ABCDE"
+                "value":"MOAP"
             },
             {
                 "img":"11.png",
-                "caption":"this shirt will be stained red by nightfall",
-                "value":"ABCDE"
+                "caption":"hey, why did the cat cross the road? \n to kill the chicken (please let me go i thirst for blood)",
+                "value":"E3AU"
             },
             {
                 "img":"12.png",
                 "caption":"you'd be drunk too if you had to wear this stupid thing",
-                "value":"ABCDE"
+                "value":"BKMF"
             },
             {
                 "img":"13.png",
                 "caption":"ah yeah, i'm kinda fantastic.",
-                "value":"ABCDE"
+                "value":"ABCD"
             },
             {
                 "img":"14.png",
                 "caption":"waAAAH-",
-                "value":"ABCDE"
+                "value":"ASDF"
             },
             {
                 "img":"15.png",
-                "caption":"oh just a normal tuesday, yourself?",
-                "value":"ABCDE"
+                "caption":"fuck off i am on da phone",
+                "value":"K7WN"
             },
             {
                 "img":"16.png",
                 "caption":"*meow*- i mean *echolocation noises*. i am a bat :)",
-                "value":"ABCDE"
+                "value":"BOOB"
             }
         ]
         
+        CODE_LENGTH = 4;
+
         game_elem = document.getElementById("gamespace");
 
         code_elem = document.getElementById("code");
@@ -128,22 +130,26 @@
                 img.addEventListener("click", addValue);
                 game_elem.append(img);
             }
-            code_elem.innerHTML = "_ _ _ _ _ - _ _ _ _ _ - _ _ _ _ _";
+            code_elem.innerHTML = "_ _ _ _ - _ _ _ _ - _ _ _ _ - _ _ _ _";
             code = [];
         }
 
         function addValue(e){
             console.log(e.target);
-            if (code.length < 3){
+            if (code.length < CODE_LENGTH){
                 code.push(e.target.value);
                 code_elem.innerHTML = "";
-                code_elem.innerHTML += code.join(" - ")
-                code_elem.innerHTML += " - _ _ _ _ _".repeat(3-code.length);
+                code_elem.innerHTML += code.join(" ")
+                code_elem.innerHTML += " - _ _ _ _".repeat(CODE_LENGTH-code.length);
                 e.target.remove();
             }
             else {
-                alert(" 🐈‍⬛ Meow! The code is only three parts! If you want to try again, press the reset button.")
+                alert(" 🐈‍⬛ Meow! The code is only "+CODE_LENGTH+" parts! If you want to try again, press the reset button.")
             }
+        }
+
+        function copy(e){
+            navigator.clipboard.writeText(code.join(""));
         }
 
         catReset();
